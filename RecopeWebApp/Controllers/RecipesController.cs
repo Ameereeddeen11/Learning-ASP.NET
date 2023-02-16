@@ -27,6 +27,18 @@ namespace RecopeWebApp.Controllers
                           Problem("Entity set 'RecopeContext.Recipes'  is null.");
         }
 
+        // GET: Recipes/ShowSearchForm
+        public async Task<IActionResult> ShowSearchForm()
+        {
+            return View();
+        }
+
+        // GET: Recipes/ShowSearchResults
+        public async Task<IActionResult> ShowSearchResults(String SearchPhrase)
+        {
+            return View("Index", await _context.Recipes.Where(j=>j.RecipeName.Contains(SearchPhrase)).ToListAsync());
+        }
+
         // GET: Recipes/Details/5
         public async Task<IActionResult> Details(int? id)
         {
