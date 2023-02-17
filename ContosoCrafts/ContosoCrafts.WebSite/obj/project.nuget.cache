@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "achx3RYpoigbEQJZZq/LHj8b2Wa9mGK510f1LY1u77PRrmNOi1R/LS4ufm8S9XLlEPUnbYsUW+o1tDGsr3+owg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Amir\\Desktop\\C#\\Learning-ASP.NET\\ContosoCrafts\\ContosoCrafts.WebSite\\ContosoCrafts.WebSite.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Amir\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.17.0\\microsoft.visualstudio.azure.containers.tools.targets.1.17.0.nupkg.sha512"
+  ],
+  "logs": []
+}
