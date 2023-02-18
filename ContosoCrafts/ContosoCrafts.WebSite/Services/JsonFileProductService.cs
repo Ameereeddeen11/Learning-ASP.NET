@@ -3,7 +3,6 @@ using System.IO;
 using System.Linq;
 using System.Text.Json;
 using ContosoCrafts.WebSite.Model;
-using ContosoCrafts.WebSite.Models;
 using Microsoft.AspNetCore.Hosting;
 
 namespace ContosoCrafts.WebSite.Services
@@ -18,13 +17,13 @@ namespace ContosoCrafts.WebSite.Services
 
         private string JsonFileName
         {
-            get{return Path.Combine(WebHostEnvironment.WebRootPath, "data", "proctucts.json");}
+            get { return Path.Combine(WebHostEnvironment.WebRootPath, "data", "proctucts.json") }
         }
         public IEnumerable<Product> GetProducts()
         {
             using (var jsonFileReader = File.OpenRead(JsonFileName))
             {
-                return JsonSerializer.Deserialize<Product[]>(jsonFileReader.ReadToEnd(),
+                return JsonSerializer.Deserialize<Product[]>(jsonFileReader.Read(),
                     new JsonSerializerOptions
                     {
                         PropertyNameCaseInsensitive = true,
