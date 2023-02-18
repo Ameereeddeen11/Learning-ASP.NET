@@ -1,13 +1,18 @@
+using ContosoCrafts.WebSite.Services;
+using System.Security.Cryptography.X509Certificates;
+
 namespace ContosoCrafts.WebSite
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static void Main(string[] args, IServiceCollection services)
         {
             var builder = WebApplication.CreateBuilder(args);
+            
 
             // Add services to the container.
             builder.Services.AddRazorPages();
+            services.AddTransient<JsonFileProductService>();
 
             var app = builder.Build();
 
