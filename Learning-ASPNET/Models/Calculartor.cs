@@ -11,18 +11,22 @@ namespace Learning_ASPNET.Models
 			Range(0, 100, ErrorMessage = "The number must be between 0 and 100.")
 		]
 		public int FirstNumber { get; set; }
+
 		[
             Display(Name = "2 Number"),
             Required(ErrorMessage = "Write a number."),
 			Range(0, 100, ErrorMessage = "The number must be between 0 and 100.")
 		]
 		public int SecondNumber { get; set; }
+
 		public double Result { get; private set; }
+
 		[
             Display(Name = "Operation"),
             Required(ErrorMessage = "Select an operation."),
 		]
 		public string Operation { get; set; }
+
 		public List<SelectListItem> PosibleOperations { get; set; }
 
 		public Calculartor()
