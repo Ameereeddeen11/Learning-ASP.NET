@@ -12,11 +12,11 @@ using System;
 using System.Reflection;
 
 [assembly: Microsoft.AspNetCore.Identity.UI.UIFrameworkAttribute("Bootstrap5")]
-[assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("aspnet-My_Blog-2ea555e9-45b1-4790-a1c2-d18263aa2544")]
+[assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("aspnet-My_Blog-3ea31962-a445-4923-b4df-d89b1b938387")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("My-Blog")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+60e0803485199f0e9571c16b81bcdbfb4662aca5")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+efb4aeb00b5545184abe22a34459315a376fe062")]
 [assembly: System.Reflection.AssemblyProductAttribute("My-Blog")]
 [assembly: System.Reflection.AssemblyTitleAttribute("My-Blog")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

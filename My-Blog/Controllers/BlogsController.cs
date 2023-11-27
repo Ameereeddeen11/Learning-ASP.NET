@@ -22,11 +22,12 @@ namespace My_Blog.Controllers
         // GET: Blogs
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Blog.ToListAsync());
+            var applicationDbContext = _context.Blog.Include(b => b.Author);
+            return View(await applicationDbContext.ToListAsync());
         }
 
         // GET: Blogs/Details/5
-        public async Task<IActionResult> Details(Guid? id)
+        public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
@@ -34,6 +35,7 @@ namespace My_Blog.Controllers
             }
 
             var blog = await _context.Blog
+                .Include(b => b.Author)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (blog == null)
             {
@@ -46,6 +48,7 @@ namespace My_Blog.Controllers
         // GET: Blogs/Create
         public IActionResult Create()
         {
+            ViewData["CreatedByUser"] = new SelectList(_context.Users, "Id", "Id");
             return View();
         }
 
@@ -54,20 +57,20 @@ namespace My_Blog.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Title,Content,PublishedDate")] Blog blog)
+        public async Task<IActionResult> Create([Bind("Id,Title,Content,PublishedDate,CreatedByUser")] Blog blog)
         {
             if (ModelState.IsValid)
             {
-                blog.Id = Guid.NewGuid();
                 _context.Add(blog);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["CreatedByUser"] = new SelectList(_context.Users, "Id", "Id", blog.CreatedByUser);
             return View(blog);
         }
 
         // GET: Blogs/Edit/5
-        public async Task<IActionResult> Edit(Guid? id)
+        public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
             {
@@ -79,6 +82,7 @@ namespace My_Blog.Controllers
             {
                 return NotFound();
             }
+            ViewData["CreatedByUser"] = new SelectList(_context.Users, "Id", "Id", blog.CreatedByUser);
             return View(blog);
         }
 
@@ -87,7 +91,7 @@ namespace My_Blog.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("Id,Title,Content,PublishedDate")] Blog blog)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Content,PublishedDate,CreatedByUser")] Blog blog)
         {
             if (id != blog.Id)
             {
@@ -114,11 +118,12 @@ namespace My_Blog.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["CreatedByUser"] = new SelectList(_context.Users, "Id", "Id", blog.CreatedByUser);
             return View(blog);
         }
 
         // GET: Blogs/Delete/5
-        public async Task<IActionResult> Delete(Guid? id)
+        public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
             {
@@ -126,6 +131,7 @@ namespace My_Blog.Controllers
             }
 
             var blog = await _context.Blog
+                .Include(b => b.Author)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (blog == null)
             {
@@ -138,7 +144,7 @@ namespace My_Blog.Controllers
         // POST: Blogs/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(Guid id)
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var blog = await _context.Blog.FindAsync(id);
             if (blog != null)
@@ -150,7 +156,7 @@ namespace My_Blog.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool BlogExists(Guid id)
+        private bool BlogExists(int id)
         {
             return _context.Blog.Any(e => e.Id == id);
         }
