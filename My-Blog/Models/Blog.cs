@@ -8,8 +8,12 @@ namespace My_Blog.Models
     {
         [Key]
         public int Id { get; set; }
+        [Display(Name = "Blog Title")]
         public required string Title { get; set; }
+        [Display(Name = "Blog")]
         public required string Content { get; set; }
+        [Display(Name = "Date")]
+        [DataType(DataType.Date)]
         public DateTime PublishedDate { get; set; }
         [ForeignKey("Author")]
         public required string CreatedByUser { get; set; }

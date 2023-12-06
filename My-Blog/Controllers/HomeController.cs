@@ -1,9 +1,11 @@
 using Microsoft.AspNetCore.Mvc;
 using My_Blog.Models;
 using System.Diagnostics;
+using Microsoft.AspNetCore.Authorization;
 
 namespace My_Blog.Controllers
 {
+    [AllowAnonymous]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
